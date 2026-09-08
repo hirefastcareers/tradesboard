@@ -24,7 +24,7 @@ export function ProfileCompleteness({
           <p className="mt-1 text-sm text-ink/65">
             {clamped < 100
               ? "Fill in the gaps so employers take you seriously."
-              : "Looking sharp — employers can find you."}
+              : "Looking sharp. Employers can find you."}
           </p>
         </div>
         <p className="font-display text-3xl font-extrabold leading-none text-signal-orange">

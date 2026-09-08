@@ -65,7 +65,7 @@ export function EmployerBrowse({
         {filtered.length === 0 ? (
           <EmptyState
             title="No candidates match yet"
-            description="Try widening your search area, clearing a trade filter, or checking back soon — new profiles land every week."
+            description="Try widening your search area, clearing a trade filter, or checking back soon. New profiles land every week."
           />
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">

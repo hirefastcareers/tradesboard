@@ -166,7 +166,7 @@ export function CandidateOnboardingForm({
           <div className="space-y-4">
             <h1 className="font-display text-2xl font-bold">Trades you want</h1>
             <p className="text-sm text-ink/65">
-              Pick one or more — employers filter on these.
+              Pick one or more. Employers filter on these.
             </p>
             <div className="flex flex-wrap gap-2">
               {TRADE_OPTIONS.map((trade) => {

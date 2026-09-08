@@ -14,7 +14,7 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="relative z-20 border-b border-ink/10 bg-workshop-white/90 backdrop-blur-sm">
+    <header className="relative z-20 border-b border-ink/10 bg-workshop-white/80 backdrop-blur-sm">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link
           href="/"

@@ -185,7 +185,7 @@ export function MessagesInbox({
                 <p className="text-sm text-ink/55">Loading…</p>
               ) : threadMessages.length === 0 ? (
                 <p className="text-sm text-ink/55">
-                  Say hello — keep it short and clear.
+                  Say hello. Keep it short and clear.
                 </p>
               ) : (
                 threadMessages.map((msg) => {

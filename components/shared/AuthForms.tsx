@@ -171,7 +171,7 @@ export function SignUpForm({ defaultType = null }: SignUpFormProps) {
         Continue with Google
       </Button>
       <p className="text-xs text-ink/50">
-        Google sign-up still needs an account type — we&apos;ll finish wiring
+        Google sign-up still needs an account type. We&apos;ll finish wiring
         that once OAuth credentials are set.
       </p>
     </form>

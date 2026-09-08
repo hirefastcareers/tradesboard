@@ -21,11 +21,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: `${APP_NAME} — young tradespeople, ready for work`,
+    default: `${APP_NAME}: young tradespeople, ready for work`,
     template: `%s · ${APP_NAME}`,
   },
   description:
-    "Employers browse young trades candidates and message them directly. No job applications — just profiles ready for work.",
+    "Employers browse young trades candidates and message them directly. No job applications, just profiles ready for work.",
 };
 
 export default function RootLayout({

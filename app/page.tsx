@@ -13,14 +13,14 @@ export default function HomePage() {
           </h2>
           <p className="mt-3 text-base leading-relaxed text-ink/75">
             On {APP_NAME}, candidates don&apos;t fire off applications into the
-            void. You put your profile up — trade, location, certs, a short bio —
+            void. You put your profile up (trade, location, certs, a short bio)
             and employers search, shortlist, and message you.
           </p>
         </div>
 
         <div className="mt-10 grid gap-8 md:grid-cols-2">
           <div className="space-y-2 border-l-4 border-signal-orange pl-4">
-            <h3 className="font-display text-xl font-bold">For 16–24s in the trades</h3>
+            <h3 className="font-display text-xl font-bold">For 16-24s in the trades</h3>
             <p className="text-sm leading-relaxed text-ink/70">
               Show what you can do, even if you&apos;re still at college. Get
               messaged by firms looking for apprentices and juniors.
@@ -36,7 +36,7 @@ export default function HomePage() {
             <h3 className="font-display text-xl font-bold">For employers</h3>
             <p className="text-sm leading-relaxed text-ink/70">
               Browse a grid of local candidates by trade, age range, and town.
-              Message the ones who fit — no CV pile to wade through.
+              Message the ones who fit. No CV pile to wade through.
             </p>
             <Link
               href="/sign-up?type=employer"

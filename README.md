@@ -1,6 +1,6 @@
 # TradeStart
 
-Job board for young tradespeople (16–24). Candidates build profiles; employers browse and message. Reverse of a normal job board.
+Job board for young tradespeople (16-24). Candidates build profiles; employers browse and message. Reverse of a normal job board.
 
 ## Stack
 
@@ -18,8 +18,8 @@ Job board for young tradespeople (16–24). Candidates build profiles; employers
 
 ## Scripts
 
-- `npm run dev` — local server
-- `npm run build` — production build
-- `npm run db:generate` — Drizzle migrations
-- `npm run db:push` — push schema to Neon
-- `npm run db:studio` — Drizzle Studio
+- `npm run dev` - local server
+- `npm run build` - production build
+- `npm run db:generate` - Drizzle migrations
+- `npm run db:push` - push schema to Neon
+- `npm run db:studio` - Drizzle Studio

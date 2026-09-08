@@ -2,7 +2,6 @@ import {
   CandidateCard,
   type CandidateCardData,
 } from "@/components/candidate/CandidateCard";
-import { ToolPattern } from "@/components/shared/ToolPattern";
 import { APP_NAME } from "@/lib/constants";
 import Link from "next/link";
 
@@ -49,8 +48,7 @@ const PREVIEW_CANDIDATES: Array<
 
 export function HomeHero() {
   return (
-    <section className="relative overflow-hidden border-b border-ink/10">
-      <ToolPattern />
+    <section className="relative">
       <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-12 lg:py-20">
         <div className="animate-fade-up space-y-6">
           <p className="font-display text-2xl font-bold text-signal-orange sm:text-3xl">

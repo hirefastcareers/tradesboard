@@ -55,7 +55,7 @@ export function FilterSidebar({
           className="w-full rounded-md border border-ink/15 bg-workshop-white px-3 py-2.5 text-sm outline-none focus:border-steel-blue"
         />
         <span className="block text-xs text-ink/50">
-          Radius filtering comes next — for now we match town or postcode text.
+          Radius filtering comes next. For now we match town or postcode text.
         </span>
       </label>
 

@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --workshop-white: #faf7f2;
+  --ink: #21262b;
+  --signal-orange: #ff5a1f;
+  --hi-vis-yellow: #ffd23f;
+  --steel-blue: #3a6ea5;
+  --card-white: #ffffff;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  color: var(--ink);
+  background: var(--workshop-white);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-baloo), system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Hero card stack: settle into overlapping, rotated hand of cards */
+@keyframes hero-card-settle {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -40%) rotate(0deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(
+        calc(-50% + var(--hero-x, 0%)),
+        calc(-50% + var(--hero-y, 0%))
+      )
+      rotate(var(--hero-rotate, 0deg));
+  }
+}
+
+.hero-card {
+  animation: hero-card-settle 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+}

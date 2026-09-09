@@ -70,15 +70,15 @@ const PREVIEW_CANDIDATES: Array<
 export function HomeHero() {
   return (
     <section className="relative">
-      <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-12 lg:py-20">
-        <div className="animate-fade-up space-y-6">
-          <p className="font-display text-2xl font-bold text-signal-orange sm:text-3xl">
+      <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-2 lg:items-center lg:gap-12 lg:py-20">
+        <div className="animate-fade-up space-y-5 sm:space-y-6">
+          <p className="font-display text-xl font-bold text-signal-orange sm:text-2xl md:text-3xl">
             {APP_NAME}
           </p>
-          <h1 className="max-w-xl text-balance font-display text-3xl font-extrabold leading-[1.05] text-ink sm:text-[3.25rem]">
+          <h1 className="max-w-xl text-balance font-display text-[2rem] font-extrabold leading-[1.08] text-ink sm:text-3xl sm:leading-[1.05] lg:text-[3.25rem]">
             Young tradespeople ready for work. Employers find them first.
           </h1>
-          <p className="max-w-lg text-lg text-ink/75">
+          <p className="max-w-lg text-base text-ink/75 sm:text-lg">
             Skip the job ads. Build a profile, get found, get messaged.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row">

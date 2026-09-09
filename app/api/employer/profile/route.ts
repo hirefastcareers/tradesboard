@@ -4,6 +4,7 @@ import { z } from "zod";
 import { getDb, hasDatabase } from "@/db";
 import { employerProfiles } from "@/db/schema";
 import { getSession } from "@/lib/session";
+import { isDemoMode } from "@/lib/demo-data";
 
 const bodySchema = z.object({
   companyName: z.string().min(1),
@@ -19,11 +20,12 @@ export async function POST(request: Request) {
   if (!session?.user?.id || session.user.accountType !== "employer") {
     return NextResponse.json({ error: "Unauthorised" }, { status: 401 });
   }
-  if (!hasDatabase()) {
-    return NextResponse.json(
-      { error: "Database is not configured yet." },
-      { status: 503 },
-    );
+  if (!hasDatabase() || isDemoMode()) {
+    const json = await request.json().catch(() => ({}));
+    return NextResponse.json({
+      profile: { id: "demo-employer-profile", userId: session.user.id, ...json },
+      demo: true,
+    });
   }
 
   try {

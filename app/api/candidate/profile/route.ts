@@ -5,6 +5,7 @@ import { getDb, hasDatabase } from "@/db";
 import { candidateProfiles } from "@/db/schema";
 import { getSession } from "@/lib/session";
 import { profileCompleteness } from "@/lib/utils";
+import { isDemoMode } from "@/lib/demo-data";
 
 const bodySchema = z.object({
   firstName: z.string().min(1),
@@ -25,11 +26,12 @@ export async function POST(request: Request) {
   if (!session?.user?.id || session.user.accountType !== "candidate") {
     return NextResponse.json({ error: "Unauthorised" }, { status: 401 });
   }
-  if (!hasDatabase()) {
-    return NextResponse.json(
-      { error: "Database is not configured yet." },
-      { status: 503 },
-    );
+  if (!hasDatabase() || isDemoMode()) {
+    const json = await request.json().catch(() => ({}));
+    return NextResponse.json({
+      profile: { id: "demo-profile", userId: session.user.id, ...json },
+      demo: true,
+    });
   }
 
   try {

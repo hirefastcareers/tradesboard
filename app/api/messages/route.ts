@@ -3,10 +3,11 @@ import { and, desc, eq, or } from "drizzle-orm";
 import { z } from "zod";
 import { getDb, hasDatabase } from "@/db";
 import { messages } from "@/db/schema";
+import { isDemoMode } from "@/lib/demo-data";
 import { getSession } from "@/lib/session";
 
 const bodySchema = z.object({
-  recipientId: z.string().uuid(),
+  recipientId: z.string().min(1),
   body: z.string().min(1).max(2000),
 });
 
@@ -15,24 +16,29 @@ export async function GET() {
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorised" }, { status: 401 });
   }
-  if (!hasDatabase()) {
+  if (!hasDatabase() || isDemoMode()) {
     return NextResponse.json({ messages: [] });
   }
 
-  const db = getDb();
-  const rows = await db
-    .select()
-    .from(messages)
-    .where(
-      or(
-        eq(messages.senderId, session.user.id),
-        eq(messages.recipientId, session.user.id),
-      ),
-    )
-    .orderBy(desc(messages.createdAt))
-    .limit(100);
+  try {
+    const db = getDb();
+    const rows = await db
+      .select()
+      .from(messages)
+      .where(
+        or(
+          eq(messages.senderId, session.user.id),
+          eq(messages.recipientId, session.user.id),
+        ),
+      )
+      .orderBy(desc(messages.createdAt))
+      .limit(100);
 
-  return NextResponse.json({ messages: rows });
+    return NextResponse.json({ messages: rows });
+  } catch (error) {
+    console.error("messages get error", error);
+    return NextResponse.json({ messages: [] });
+  }
 }
 
 export async function POST(request: Request) {
@@ -40,18 +46,28 @@ export async function POST(request: Request) {
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorised" }, { status: 401 });
   }
-  if (!hasDatabase()) {
-    return NextResponse.json(
-      { error: "Database is not configured yet." },
-      { status: 503 },
-    );
-  }
 
   try {
     const json = await request.json();
     const parsed = bodySchema.safeParse(json);
     if (!parsed.success) {
       return NextResponse.json({ error: "Invalid message." }, { status: 400 });
+    }
+
+    if (!hasDatabase() || isDemoMode()) {
+      return NextResponse.json(
+        {
+          message: {
+            id: `demo-msg-${Date.now()}`,
+            senderId: session.user.id,
+            recipientId: parsed.data.recipientId,
+            body: parsed.data.body,
+            readAt: null,
+            createdAt: new Date().toISOString(),
+          },
+        },
+        { status: 201 },
+      );
     }
 
     const db = getDb();
@@ -79,7 +95,7 @@ export async function PATCH(request: Request) {
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorised" }, { status: 401 });
   }
-  if (!hasDatabase()) {
+  if (!hasDatabase() || isDemoMode()) {
     return NextResponse.json({ ok: true });
   }
 
@@ -89,16 +105,21 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ error: "Invalid id" }, { status: 400 });
   }
 
-  const db = getDb();
-  await db
-    .update(messages)
-    .set({ readAt: new Date() })
-    .where(
-      and(
-        eq(messages.id, id.data),
-        eq(messages.recipientId, session.user.id),
-      ),
-    );
+  try {
+    const db = getDb();
+    await db
+      .update(messages)
+      .set({ readAt: new Date() })
+      .where(
+        and(
+          eq(messages.id, id.data),
+          eq(messages.recipientId, session.user.id),
+        ),
+      );
 
-  return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    console.error("message patch error", error);
+    return NextResponse.json({ ok: true });
+  }
 }

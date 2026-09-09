@@ -6,6 +6,15 @@ import { eq } from "drizzle-orm";
 import { getDb, hasDatabase } from "@/db";
 import { users } from "@/db/schema";
 import type { AccountType } from "@/db/schema";
+import {
+  DEMO_NEXTAUTH_SECRET,
+  DEMO_USERS,
+  isDemoMode,
+} from "@/lib/demo-data";
+
+function resolveAuthSecret() {
+  return process.env.NEXTAUTH_SECRET || DEMO_NEXTAUTH_SECRET;
+}
 
 const providers: NextAuthOptions["providers"] = [
   CredentialsProvider({
@@ -18,6 +27,24 @@ const providers: NextAuthOptions["providers"] = [
       if (!credentials?.email || !credentials.password) {
         return null;
       }
+
+      const email = credentials.email.toLowerCase();
+
+      if (isDemoMode()) {
+        const demo = DEMO_USERS.find((u) => u.email === email);
+        if (demo && credentials.password === demo.password) {
+          return {
+            id: demo.id,
+            email: demo.email,
+            name: demo.name,
+            accountType: demo.accountType,
+          };
+        }
+        // In demo mode, still allow any email/password to sign in as employer
+        // only when matching demo accounts — otherwise fall through / fail.
+        return null;
+      }
+
       if (!hasDatabase()) {
         throw new Error("Database is not configured");
       }
@@ -26,7 +53,7 @@ const providers: NextAuthOptions["providers"] = [
       const [user] = await db
         .select()
         .from(users)
-        .where(eq(users.email, credentials.email.toLowerCase()))
+        .where(eq(users.email, email))
         .limit(1);
 
       if (!user?.passwordHash) {
@@ -76,7 +103,6 @@ export const authOptions: NextAuthOptions = {
         .where(eq(users.email, user.email.toLowerCase()))
         .limit(1);
 
-      // New Google users must pick an account type via /sign-up first
       if (!existing) {
         return "/sign-up?oauth=google&email=" + encodeURIComponent(user.email);
       }
@@ -98,7 +124,6 @@ export const authOptions: NextAuthOptions = {
         token.accountType = session.accountType as AccountType;
       }
 
-      // Refresh accountType from DB when missing (e.g. Google returning users)
       if (!token.accountType && token.email && hasDatabase()) {
         const db = getDb();
         const [row] = await db
@@ -115,6 +140,17 @@ export const authOptions: NextAuthOptions = {
         }
       }
 
+      // Demo fallback: map known demo emails onto account types
+      if (!token.accountType && token.email && isDemoMode()) {
+        const demo = DEMO_USERS.find(
+          (u) => u.email === String(token.email).toLowerCase(),
+        );
+        if (demo) {
+          token.id = demo.id;
+          token.accountType = demo.accountType;
+        }
+      }
+
       return token;
     },
     async session({ session, token }) {
@@ -125,5 +161,5 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: resolveAuthSecret(),
 };

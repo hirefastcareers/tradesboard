@@ -6,6 +6,7 @@ import { EmployerBrowse } from "@/components/employer/EmployerBrowse";
 import { Button } from "@/components/shared/Button";
 import { getDb, hasDatabase } from "@/db";
 import { candidateProfiles } from "@/db/schema";
+import { getDemoCandidateCards, isDemoMode } from "@/lib/demo-data";
 import { getSession } from "@/lib/session";
 import type { Metadata } from "next";
 
@@ -15,63 +16,6 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-const DEMO_CANDIDATES: CandidateCardData[] = [
-  {
-    id: "demo-jamie",
-    firstName: "Jamie",
-    ageRange: "16-18",
-    town: "Sheffield",
-    tradeInterests: ["electrician"],
-    certifications: ["CSCS", "First aid"],
-    photoUrl: null,
-  },
-  {
-    id: "demo-aisha",
-    firstName: "Aisha",
-    ageRange: "19-21",
-    town: "Leeds",
-    tradeInterests: ["plumber"],
-    certifications: ["CSCS", "Manual handling"],
-    photoUrl: null,
-  },
-  {
-    id: "demo-tom",
-    firstName: "Tom",
-    ageRange: "22-24",
-    town: "Manchester",
-    tradeInterests: ["joiner"],
-    certifications: ["CSCS", "Working at height"],
-    photoUrl: null,
-  },
-  {
-    id: "demo-ellie",
-    firstName: "Ellie",
-    ageRange: "19-21",
-    town: "Bradford",
-    tradeInterests: ["painter-decorator"],
-    certifications: ["CSCS"],
-    photoUrl: null,
-  },
-  {
-    id: "demo-noah",
-    firstName: "Noah",
-    ageRange: "16-18",
-    town: "York",
-    tradeInterests: ["bricklayer"],
-    certifications: ["First aid"],
-    photoUrl: null,
-  },
-  {
-    id: "demo-priya",
-    firstName: "Priya",
-    ageRange: "22-24",
-    town: "Leeds",
-    tradeInterests: ["general-labour"],
-    certifications: ["CSCS", "Manual handling", "Site safety"],
-    photoUrl: null,
-  },
-];
-
 export default async function EmployerDashboardPage() {
   const session = await getSession();
   if (!session?.user) redirect("/sign-in");
@@ -79,8 +23,8 @@ export default async function EmployerDashboardPage() {
     redirect("/candidate/dashboard");
   }
 
-  let candidates: CandidateCardData[] = DEMO_CANDIDATES;
-  if (hasDatabase()) {
+  let candidates: CandidateCardData[] = getDemoCandidateCards();
+  if (hasDatabase() && !isDemoMode()) {
     try {
       const db = getDb();
       const rows = await db
@@ -100,7 +44,7 @@ export default async function EmployerDashboardPage() {
         candidates = rows;
       }
     } catch {
-      // keep demo data for scaffold/preview
+      // keep demo data
     }
   }
 
@@ -113,6 +57,7 @@ export default async function EmployerDashboardPage() {
           </h1>
           <p className="mt-1 text-ink/70">
             Browse profiles, then message the people who fit.
+            {isDemoMode() ? " Demo candidates are loaded for testing." : null}
           </p>
         </div>
         <div className="flex flex-wrap gap-2">

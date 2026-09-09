@@ -1,4 +1,8 @@
 {
   "framework": "nextjs",
-  "buildCommand": "next build"
+  "buildCommand": "next build",
+  "env": {
+    "DEMO_MODE": "true",
+    "NEXTAUTH_SECRET": "tradesboard-demo-secret-not-for-real-auth-use-32chars"
+  }
 }

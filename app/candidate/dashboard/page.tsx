@@ -7,6 +7,10 @@ import { Button } from "@/components/shared/Button";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { getDb, hasDatabase } from "@/db";
 import { candidateProfiles } from "@/db/schema";
+import {
+  getDemoCandidateForSession,
+  isDemoMode,
+} from "@/lib/demo-data";
 import { getSession } from "@/lib/session";
 import { profileCompleteness } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -25,7 +29,7 @@ export default async function CandidateDashboardPage() {
   }
 
   let profile = null;
-  if (hasDatabase()) {
+  if (hasDatabase() && !isDemoMode()) {
     try {
       const db = getDb();
       const [row] = await db
@@ -36,6 +40,28 @@ export default async function CandidateDashboardPage() {
       profile = row ?? null;
     } catch {
       profile = null;
+    }
+  }
+
+  if (!profile && isDemoMode()) {
+    const demo = getDemoCandidateForSession(session.user.id);
+    if (demo) {
+      profile = {
+        id: demo.id,
+        userId: demo.userId,
+        firstName: demo.firstName,
+        ageRange: demo.ageRange,
+        postcode: demo.postcode,
+        town: demo.town,
+        tradeInterests: demo.tradeInterests,
+        currentlyStudying: demo.currentlyStudying,
+        workExperience: demo.workExperience,
+        certifications: demo.certifications,
+        bio: demo.bio,
+        photoUrl: demo.photoUrl,
+        profileComplete: true,
+        createdAt: new Date(),
+      };
     }
   }
 

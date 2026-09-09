@@ -105,12 +105,16 @@ export function MessagesInbox({
           body: draft.trim(),
         }),
       });
+      const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
         throw new Error(data.error ?? "Could not send");
       }
       setDraft("");
-      await load();
+      if (data.message) {
+        setMessages((prev) => [data.message as MessageRow, ...prev]);
+      } else {
+        await load();
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not send");
     } finally {

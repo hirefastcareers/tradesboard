@@ -4,6 +4,7 @@ import { eq } from "drizzle-orm";
 import { z } from "zod";
 import { getDb, hasDatabase } from "@/db";
 import { users } from "@/db/schema";
+import { isDemoMode } from "@/lib/demo-data";
 
 const bodySchema = z.object({
   email: z.string().email(),
@@ -12,9 +13,12 @@ const bodySchema = z.object({
 });
 
 export async function POST(request: Request) {
-  if (!hasDatabase()) {
+  if (isDemoMode() || !hasDatabase()) {
     return NextResponse.json(
-      { error: "Database is not configured yet. Set DATABASE_URL." },
+      {
+        error:
+          "Demo mode is on. Sign in with employer@demo.local or candidate@demo.local (password123).",
+      },
       { status: 503 },
     );
   }
@@ -52,7 +56,11 @@ export async function POST(request: Request) {
         passwordHash,
         accountType: parsed.data.accountType,
       })
-      .returning({ id: users.id, email: users.email, accountType: users.accountType });
+      .returning({
+        id: users.id,
+        email: users.email,
+        accountType: users.accountType,
+      });
 
     return NextResponse.json({ user: created }, { status: 201 });
   } catch (error) {

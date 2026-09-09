@@ -8,6 +8,7 @@ type EmptyStateProps = {
   actionLabel?: string;
   actionHref?: string;
   className?: string;
+  /** Kept for call-site compatibility; pattern background cleared for now. */
   patterned?: boolean;
 };
 
@@ -17,7 +18,6 @@ export function EmptyState({
   actionLabel,
   actionHref,
   className,
-  patterned = true,
 }: EmptyStateProps) {
   return (
     <div

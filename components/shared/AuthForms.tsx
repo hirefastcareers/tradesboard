@@ -178,10 +178,12 @@ export function SignUpForm({ defaultType = null }: SignUpFormProps) {
   );
 }
 
-export function SignInForm() {
+export function SignInForm({ showDemoHints = false }: { showDemoHints?: boolean }) {
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState(
+    showDemoHints ? "employer@demo.local" : "",
+  );
+  const [password, setPassword] = useState(showDemoHints ? "password123" : "");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -218,6 +220,42 @@ export function SignInForm() {
           </Link>
         </p>
       </div>
+
+      {showDemoHints ? (
+        <div className="rounded-xl border border-hi-vis-yellow/60 bg-hi-vis-yellow/25 px-4 py-3 text-sm text-ink">
+          <p className="font-semibold">Demo accounts</p>
+          <p className="mt-1 text-ink/75">
+            Employer: <code className="text-xs">employer@demo.local</code> /{" "}
+            <code className="text-xs">password123</code>
+          </p>
+          <p className="text-ink/75">
+            Candidate: <code className="text-xs">candidate@demo.local</code> /{" "}
+            <code className="text-xs">password123</code>
+          </p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            <button
+              type="button"
+              className="rounded-md border border-ink/15 bg-card-white px-2.5 py-1 text-xs font-medium hover:border-ink/30"
+              onClick={() => {
+                setEmail("employer@demo.local");
+                setPassword("password123");
+              }}
+            >
+              Use employer
+            </button>
+            <button
+              type="button"
+              className="rounded-md border border-ink/15 bg-card-white px-2.5 py-1 text-xs font-medium hover:border-ink/30"
+              onClick={() => {
+                setEmail("candidate@demo.local");
+                setPassword("password123");
+              }}
+            >
+              Use candidate
+            </button>
+          </div>
+        </div>
+      ) : null}
 
       <label className="block space-y-1.5">
         <span className="text-sm font-medium">Email</span>

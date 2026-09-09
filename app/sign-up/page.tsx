@@ -3,7 +3,7 @@ import type { AccountType } from "@/db/schema";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Sign up",
+  title: "Register",
 };
 
 export default function SignUpPage({

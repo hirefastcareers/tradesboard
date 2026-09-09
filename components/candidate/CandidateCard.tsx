@@ -114,7 +114,7 @@ export function CandidateCard({
           </p>
           {href ? (
             <span className="shrink-0 text-xs font-semibold text-signal-orange transition group-hover:translate-x-0.5">
-              View →
+              View profile →
             </span>
           ) : null}
         </div>

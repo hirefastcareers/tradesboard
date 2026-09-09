@@ -59,13 +59,13 @@ export function EmployerBrowse({
             Candidates
           </h2>
           <p className="text-sm text-ink/55">
-            {filtered.length} shown
+            {filtered.length} {filtered.length === 1 ? "result" : "results"}
           </p>
         </div>
         {filtered.length === 0 ? (
           <EmptyState
-            title="No candidates match yet"
-            description="Try widening your search area, clearing a trade filter, or checking back soon. New profiles land every week."
+            title="No matching candidates"
+            description="Try a wider location, clear a trade filter, or check again soon. New candidate profiles are added regularly."
           />
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">

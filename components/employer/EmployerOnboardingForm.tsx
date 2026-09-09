@@ -65,9 +65,9 @@ export function EmployerOnboardingForm({
       className="mx-auto max-w-xl space-y-5 rounded-2xl border border-ink/10 bg-card-white p-6 shadow-card"
     >
       <div>
-        <h1 className="font-display text-2xl font-bold">Your company</h1>
+        <h1 className="font-display text-2xl font-bold">Company profile</h1>
         <p className="mt-1 text-sm text-ink/65">
-          Candidates see this when you message them.
+          This information is shown to candidates when you contact them.
         </p>
       </div>
 
@@ -134,14 +134,14 @@ export function EmployerOnboardingForm({
           onChange={(e) => update("bio", e.target.value)}
           rows={4}
           className={inputClass}
-          placeholder="What you do, who you hire, what a first week looks like."
+          placeholder="Describe your company, the roles you hire for and what candidates can expect."
         />
       </label>
 
       {error ? <p className="text-sm text-signal-orange">{error}</p> : null}
 
       <Button type="submit" className="w-full" disabled={saving}>
-        {saving ? "Saving…" : "Save and browse candidates"}
+        {saving ? "Saving…" : "Save and search candidates"}
       </Button>
     </form>
   );

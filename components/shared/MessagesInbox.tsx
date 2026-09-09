@@ -126,11 +126,11 @@ export function MessagesInbox({
     <div className="grid min-h-[60vh] overflow-hidden rounded-2xl border border-ink/10 bg-card-white lg:grid-cols-[280px_1fr]">
       <aside className="border-b border-ink/10 lg:border-b-0 lg:border-r">
         <div className="border-b border-ink/10 px-4 py-3">
-          <h2 className="font-display text-lg font-bold">Inbox</h2>
+          <h2 className="font-display text-lg font-bold">Messages</h2>
           <p className="text-xs text-ink/55">
             {accountType === "employer"
-              ? "Message candidates from their profiles."
-              : "Employers who reach out show up here."}
+              ? "Contact candidates from their profiles."
+              : "Messages from employers will appear here."}
           </p>
         </div>
         <ul className="max-h-64 overflow-y-auto lg:max-h-[calc(60vh-64px)]">
@@ -165,14 +165,14 @@ export function MessagesInbox({
             <div className="relative w-full max-w-md">
               <EmptyState
                 patterned={false}
-                title="Pick a conversation"
+                title="No conversation selected"
                 description={
                   accountType === "employer"
-                    ? "Open a candidate profile and hit Message to start a thread."
-                    : "When an employer messages you, the thread will land here."
+                    ? "Open a candidate profile and select Contact to start a conversation."
+                    : "When an employer contacts you, the conversation will appear here."
                 }
                 actionLabel={
-                  accountType === "employer" ? "Browse candidates" : undefined
+                  accountType === "employer" ? "Search candidates" : undefined
                 }
                 actionHref={
                   accountType === "employer" ? "/employer/dashboard" : undefined
@@ -187,7 +187,7 @@ export function MessagesInbox({
                 <p className="text-sm text-ink/55">Loading…</p>
               ) : threadMessages.length === 0 ? (
                 <p className="text-sm text-ink/55">
-                  Say hello. Keep it short and clear.
+                  Send a short message introducing your vacancy and next steps.
                 </p>
               ) : (
                 threadMessages.map((msg) => {
@@ -219,7 +219,7 @@ export function MessagesInbox({
                 <input
                   value={draft}
                   onChange={(e) => setDraft(e.target.value)}
-                  placeholder="Write a message…"
+                  placeholder="Type your message"
                   className="flex-1 rounded-md border border-ink/15 bg-workshop-white px-3 py-2.5 text-sm outline-none focus:border-steel-blue"
                   onKeyDown={(e) => {
                     if (e.key === "Enter" && !e.shiftKey) {

@@ -9,40 +9,45 @@ export default function HomePage() {
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <div className="max-w-2xl">
           <h2 className="font-display text-2xl font-bold text-ink sm:text-[1.75rem]">
-            The reverse of a normal job board
+            A candidate database built for the trades
           </h2>
           <p className="mt-3 text-base leading-relaxed text-ink/75">
-            On {APP_NAME}, candidates don&apos;t fire off applications into the
-            void. You put your profile up (trade, location, certs, a short bio)
-            and employers search, shortlist, and message you.
+            Instead of posting a vacancy and waiting for applications, employers
+            search candidate profiles on {APP_NAME}. Candidates set out their
+            trade, location, qualifications and experience, then employers get
+            in touch.
           </p>
         </div>
 
         <div className="mt-10 grid gap-8 md:grid-cols-2">
           <div className="space-y-2 border-l-4 border-signal-orange pl-4">
-            <h3 className="font-display text-xl font-bold">For 16-24s in the trades</h3>
+            <h3 className="font-display text-xl font-bold">
+              For candidates aged 16-24
+            </h3>
             <p className="text-sm leading-relaxed text-ink/70">
-              Show what you can do, even if you&apos;re still at college. Get
-              messaged by firms looking for apprentices and juniors.
+              Create a free profile with your trade, town, tickets and
+              experience. Make it easy for local employers to find you,
+              whether you are at college or already on site.
             </p>
             <Link
               href="/sign-up?type=candidate"
               className="inline-block text-sm font-semibold text-signal-orange hover:underline"
             >
-              Build your profile →
+              Create your free profile →
             </Link>
           </div>
           <div className="space-y-2 border-l-4 border-steel-blue pl-4">
             <h3 className="font-display text-xl font-bold">For employers</h3>
             <p className="text-sm leading-relaxed text-ink/70">
-              Browse a grid of local candidates by trade, age range, and town.
-              Message the ones who fit. No CV pile to wade through.
+              Search apprentices and junior tradespeople by trade, age range
+              and location. Shortlist the profiles that fit, then contact
+              candidates directly.
             </p>
             <Link
               href="/sign-up?type=employer"
               className="inline-block text-sm font-semibold text-steel-blue hover:underline"
             >
-              Start hiring →
+              Start searching candidates →
             </Link>
           </div>
         </div>

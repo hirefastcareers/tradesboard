@@ -143,11 +143,11 @@ export default async function CandidatePublicProfilePage({
             <div className="flex flex-wrap gap-2 pb-1">
               {canMessage ? (
                 <Link href={`/messages?to=${profile.userId}`}>
-                  <Button size="lg">Message {profile.firstName}</Button>
+                  <Button size="lg">Contact {profile.firstName}</Button>
                 </Link>
               ) : session?.user?.accountType === "candidate" ? null : (
                 <Link href="/sign-in">
-                  <Button size="lg">Sign in to message</Button>
+                  <Button size="lg">Sign in to contact</Button>
                 </Link>
               )}
             </div>
@@ -209,10 +209,10 @@ export default async function CandidatePublicProfilePage({
             <aside className="space-y-3">
               <div className="rounded-2xl border border-ink/10 bg-workshop-white p-4 sm:p-5">
                 <h2 className="font-display text-lg font-bold text-ink">
-                  Tickets & checks
+                  Licences and qualifications
                 </h2>
                 <p className="mt-1 text-xs text-ink/55">
-                  What {profile.firstName} can bring to site.
+                  Key checks employers look for on site.
                 </p>
                 <div className="mt-3">
                   <CandidateChecksList checks={checks} />

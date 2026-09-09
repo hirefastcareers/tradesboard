@@ -19,12 +19,12 @@ export function ProfileCompleteness({
       <div className="flex items-end justify-between gap-3">
         <div>
           <p className="font-display text-lg font-bold text-ink">
-            Profile strength
+            Profile completeness
           </p>
           <p className="mt-1 text-sm text-ink/65">
             {clamped < 100
-              ? "Fill in the gaps so employers take you seriously."
-              : "Looking sharp. Employers can find you."}
+              ? "Complete more sections to improve your visibility to employers."
+              : "Your profile is complete and ready for employers to review."}
           </p>
         </div>
         <p className="font-display text-3xl font-extrabold leading-none text-signal-orange">

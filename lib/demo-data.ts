@@ -31,8 +31,8 @@ export const DEMO_CANDIDATES: DemoCandidate[] = [
     tradeInterests: ["electrician"],
     certifications: ["First aid"],
     currentlyStudying: "Level 2 Electrical Installation",
-    workExperience: "Weekend labouring for a local sparks.",
-    bio: "Keen to start an apprenticeship. Reliable, early, and happy on site.",
+    workExperience: "Weekend labouring for a local electrician.",
+    bio: "Reliable and punctual candidate seeking an electrical apprenticeship. Available for site work and college day release.",
     photoUrl: null,
     checks: {
       hasCscs: true,
@@ -53,7 +53,7 @@ export const DEMO_CANDIDATES: DemoCandidate[] = [
     certifications: ["Manual handling"],
     currentlyStudying: null,
     workExperience: "One-year college placement with a domestic plumber.",
-    bio: "Looking for junior plumber or mature apprentice roles in West Yorkshire.",
+    bio: "Seeking a junior plumber or mature apprenticeship role in West Yorkshire. Placement experience with domestic plumbing.",
     photoUrl: null,
     checks: {
       hasCscs: true,
@@ -74,7 +74,7 @@ export const DEMO_CANDIDATES: DemoCandidate[] = [
     certifications: ["Working at height"],
     currentlyStudying: null,
     workExperience: "Two years fitting kitchens and first/second fix.",
-    bio: "Site-ready joiner. Own basic tools. Can start next month.",
+    bio: "Experienced junior joiner with kitchen fitting and first/second fix experience. Own basic tools and available to start next month.",
     photoUrl: null,
     checks: {
       hasCscs: true,
@@ -95,7 +95,7 @@ export const DEMO_CANDIDATES: DemoCandidate[] = [
     certifications: [],
     currentlyStudying: "Painting & Decorating Level 2",
     workExperience: "Helped on family renovation jobs.",
-    bio: "Neat finisher looking for commercial or residential work.",
+    bio: "Painter and decorator seeking commercial or residential roles. Strong attention to finish quality.",
     photoUrl: null,
     checks: {
       hasCscs: true,
@@ -116,7 +116,7 @@ export const DEMO_CANDIDATES: DemoCandidate[] = [
     certifications: ["First aid"],
     currentlyStudying: "Bricklaying at York College",
     workExperience: null,
-    bio: "Strong and keen. Want a bricklaying apprenticeship close to York.",
+    bio: "Motivated candidate seeking a bricklaying apprenticeship in the York area.",
     photoUrl: null,
     checks: {
       hasCscs: false,
@@ -137,7 +137,7 @@ export const DEMO_CANDIDATES: DemoCandidate[] = [
     certifications: ["Manual handling", "Site safety"],
     currentlyStudying: null,
     workExperience: "Six months on a housing site as general labour.",
-    bio: "Hard worker, CSCS ready, looking for steady site work.",
+    bio: "CSCS-qualified general labourer seeking regular site work. Experience on housing developments.",
     photoUrl: null,
     checks: {
       hasCscs: true,
@@ -158,7 +158,7 @@ export const DEMO_CANDIDATES: DemoCandidate[] = [
     certifications: ["First aid", "Manual handling"],
     currentlyStudying: null,
     workExperience: "Domestic second fix with an uncle's firm over summer.",
-    bio: "Finished college. Want a proper spark's mate role with day release.",
+    bio: "College-qualified candidate seeking an electrician's mate role with day release.",
     photoUrl: null,
     checks: {
       hasCscs: true,
@@ -179,7 +179,7 @@ export const DEMO_CANDIDATES: DemoCandidate[] = [
     certifications: [],
     currentlyStudying: "Plumbing Level 2",
     workExperience: "Saturday shifts in a builders' merchants.",
-    bio: "Hands-on, learns fast, happy to graft. Looking for an apprenticeship.",
+    bio: "Practical and quick to learn. Seeking a plumbing apprenticeship or entry-level site role.",
     photoUrl: null,
     checks: {
       hasCscs: true,
@@ -200,7 +200,7 @@ export const DEMO_CANDIDATES: DemoCandidate[] = [
     certifications: ["Working at height"],
     currentlyStudying: null,
     workExperience: "Eighteen months on new-build housing sites.",
-    bio: "Can lay bricks to line. Own PPE. Available full time.",
+    bio: "Bricklayer with new-build housing experience. Own PPE and available full time.",
     photoUrl: null,
     checks: {
       hasCscs: true,
@@ -221,7 +221,7 @@ export const DEMO_CANDIDATES: DemoCandidate[] = [
     certifications: ["First aid"],
     currentlyStudying: "Site Carpentry Level 3",
     workExperience: "College workshop plus two site placements.",
-    bio: "Careful with finishes. Prefer joinery over rough carpentry.",
+    bio: "Site carpentry student seeking joinery roles with a focus on quality finishes.",
     photoUrl: null,
     checks: {
       hasCscs: true,
@@ -242,7 +242,7 @@ export const DEMO_CANDIDATES: DemoCandidate[] = [
     certifications: ["Manual handling"],
     currentlyStudying: "Painter & Decorator Level 2",
     workExperience: null,
-    bio: "Neat, tidy, and proud of clean edges. Want weekend or apprentice work.",
+    bio: "Painter and decorator student seeking weekend or apprenticeship opportunities.",
     photoUrl: null,
     checks: {
       hasCscs: false,
@@ -263,7 +263,7 @@ export const DEMO_CANDIDATES: DemoCandidate[] = [
     certifications: ["IPAF", "First aid"],
     currentlyStudying: null,
     workExperience: "Three years as an electrician's mate on commercial fit-outs.",
-    bio: "Ready for a junior electrician role. Own tools and van access.",
+    bio: "Experienced electrician's mate seeking a junior electrician role. Own tools and van access.",
     photoUrl: null,
     checks: {
       hasCscs: true,

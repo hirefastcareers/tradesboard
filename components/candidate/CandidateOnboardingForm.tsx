@@ -14,12 +14,12 @@ import {
 } from "@/lib/constants";
 
 const STEPS = [
-  "Basic info",
-  "Trade & skills",
+  "Basic details",
+  "Trade preferences",
   "Education",
   "Experience",
-  "Tickets & checks",
-  "Bio & photo",
+  "Licences and qualifications",
+  "Profile summary",
 ] as const;
 
 type FormState = {
@@ -133,7 +133,7 @@ export function CandidateOnboardingForm({
       <div className="rounded-2xl border border-ink/10 bg-card-white p-6 shadow-card">
         {step === 0 && (
           <div className="space-y-4">
-            <h1 className="font-display text-2xl font-bold">About you</h1>
+            <h1 className="font-display text-2xl font-bold">Basic details</h1>
             <Field label="First name">
               <input
                 value={form.firstName}
@@ -176,9 +176,9 @@ export function CandidateOnboardingForm({
 
         {step === 1 && (
           <div className="space-y-4">
-            <h1 className="font-display text-2xl font-bold">Trades you want</h1>
+            <h1 className="font-display text-2xl font-bold">Trade preferences</h1>
             <p className="text-sm text-ink/65">
-              Pick one or more. Employers filter on these.
+              Select the trades you want employers to consider you for.
             </p>
             <div className="flex flex-wrap gap-2">
               {TRADE_OPTIONS.map((trade) => {
@@ -229,7 +229,7 @@ export function CandidateOnboardingForm({
                 value={form.workExperience}
                 onChange={(e) => update("workExperience", e.target.value)}
                 rows={5}
-                placeholder="Weekend shifts, placements, helping family on site…"
+                placeholder="Include placements, part-time work and site experience"
                 className={inputClass}
               />
             </Field>
@@ -240,10 +240,11 @@ export function CandidateOnboardingForm({
           <div className="space-y-5">
             <div>
               <h1 className="font-display text-2xl font-bold">
-                Tickets & checks
+                Licences and qualifications
               </h1>
               <p className="mt-1 text-sm text-ink/65">
-                Tick what you have. Employers scan these first.
+                Select the qualifications you hold. Employers use these when
+                shortlisting.
               </p>
             </div>
             <div className="space-y-2">
@@ -276,7 +277,7 @@ export function CandidateOnboardingForm({
             </div>
             <div>
               <p className="mb-2 text-sm font-medium text-ink">
-                Other certificates
+                Additional certificates
               </p>
               <div className="flex flex-wrap gap-2">
                 {CERT_OPTIONS.map((cert) => {
@@ -308,17 +309,17 @@ export function CandidateOnboardingForm({
 
         {step === 5 && (
           <div className="space-y-4">
-            <h1 className="font-display text-2xl font-bold">Bio & photo</h1>
-            <Field label="Short bio">
+            <h1 className="font-display text-2xl font-bold">Profile summary</h1>
+            <Field label="About you">
               <textarea
                 value={form.bio}
                 onChange={(e) => update("bio", e.target.value)}
                 rows={4}
-                placeholder="Who you are, what you're after, when you can start."
+                placeholder="Summarise your experience, availability and the roles you are looking for."
                 className={inputClass}
               />
             </Field>
-            <Field label="Photo URL (optional for now)">
+            <Field label="Photo URL (optional)">
               <input
                 value={form.photoUrl}
                 onChange={(e) => update("photoUrl", e.target.value)}
@@ -345,7 +346,7 @@ export function CandidateOnboardingForm({
             {step === STEPS.length - 1
               ? saving
                 ? "Saving…"
-                : "Finish profile"
+                : "Save profile"
               : saving
                 ? "Saving…"
                 : "Continue"}

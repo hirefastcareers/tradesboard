@@ -77,18 +77,19 @@ export default async function CandidateDashboardPage() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="font-display text-3xl font-bold text-ink">
-            Hey{profile?.firstName ? `, ${profile.firstName}` : ""}
+            Welcome{profile?.firstName ? `, ${profile.firstName}` : ""}
           </h1>
           <p className="mt-1 text-ink/70">
-            Your profile is what employers browse. Keep it sharp.
+            Keep your profile up to date so employers can find the right
+            information quickly.
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
           <Link href="/messages">
-            <Button variant="outline">Inbox</Button>
+            <Button variant="outline">Messages</Button>
           </Link>
           <Link href="/candidate/onboarding">
-            <Button>{profile ? "Edit profile" : "Finish profile"}</Button>
+            <Button>{profile ? "Edit profile" : "Complete profile"}</Button>
           </Link>
         </div>
       </div>
@@ -119,9 +120,9 @@ export default async function CandidateDashboardPage() {
           />
         ) : (
           <EmptyState
-            title="Your profile isn't live yet"
-            description="Add your trade, town, and a short bio so employers can find you."
-            actionLabel="Start your profile"
+            title="Your profile is incomplete"
+            description="Add your trade, location and a short summary so employers can assess your suitability."
+            actionLabel="Complete your profile"
             actionHref="/candidate/onboarding"
           />
         )}

@@ -15,7 +15,7 @@ const PREVIEW_CANDIDATES: Array<
     town: "Sheffield",
     tradeInterests: ["electrician"],
     certifications: ["First aid"],
-    bio: "Keen to start an apprenticeship. Reliable, early, and happy on site.",
+    bio: "Reliable candidate seeking an electrical apprenticeship. Available for site work.",
     checks: {
       hasCscs: true,
       canDrive: false,
@@ -35,7 +35,7 @@ const PREVIEW_CANDIDATES: Array<
     town: "Leeds",
     tradeInterests: ["plumber"],
     certifications: ["Manual handling"],
-    bio: "Looking for junior plumber or mature apprentice roles in West Yorkshire.",
+    bio: "Seeking a junior plumber or mature apprenticeship role in West Yorkshire.",
     checks: {
       hasCscs: true,
       canDrive: true,
@@ -55,7 +55,7 @@ const PREVIEW_CANDIDATES: Array<
     town: "Manchester",
     tradeInterests: ["joiner"],
     certifications: ["Working at height"],
-    bio: "Site-ready joiner. Own basic tools. Can start next month.",
+    bio: "Junior joiner with fitting experience. Own basic tools and available next month.",
     checks: {
       hasCscs: true,
       canDrive: true,
@@ -79,23 +79,24 @@ export function HomeHero() {
             {APP_NAME}
           </p>
           <h1 className="max-w-xl text-balance font-display text-[2rem] font-extrabold leading-[1.08] text-ink sm:text-3xl sm:leading-[1.05] lg:text-[3.25rem]">
-            Young tradespeople ready for work. Employers find them first.
+            Find apprentices and junior tradespeople ready to work
           </h1>
           <p className="max-w-lg text-base text-ink/75 sm:text-lg">
-            Skip the job ads. Build a profile, get found, get messaged.
+            Create a free profile or search candidates by trade and location.
+            Employers contact the right people directly.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Link
               href="/sign-up?type=candidate"
               className="inline-flex items-center justify-center rounded-md bg-signal-orange px-5 py-3 text-base font-semibold text-white shadow-sm transition hover:brightness-110"
             >
-              I&apos;m looking for work
+              Create a candidate profile
             </Link>
             <Link
               href="/sign-up?type=employer"
               className="inline-flex items-center justify-center rounded-md border border-ink/20 bg-card-white px-5 py-3 text-base font-semibold text-ink transition hover:border-ink/40"
             >
-              I&apos;m hiring
+              Search candidates
             </Link>
           </div>
         </div>

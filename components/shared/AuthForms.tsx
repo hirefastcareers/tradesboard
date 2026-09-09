@@ -5,6 +5,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/shared/Button";
+import { APP_NAME } from "@/lib/constants";
 import type { AccountType } from "@/db/schema";
 
 type SignUpFormProps = {
@@ -26,11 +27,11 @@ export function SignUpForm({ defaultType = null }: SignUpFormProps) {
       <div className="space-y-6">
         <div>
           <h1 className="font-display text-3xl font-bold text-ink">
-            Join as…
+            Create an account
           </h1>
           <p className="mt-2 text-ink/70">
-            Pick how you&apos;ll use the site. You can&apos;t switch later
-            without a new account.
+            Choose how you want to use {APP_NAME}. You will need a separate
+            account if you want to switch later.
           </p>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
@@ -39,9 +40,9 @@ export function SignUpForm({ defaultType = null }: SignUpFormProps) {
             onClick={() => setAccountType("candidate")}
             className="rounded-2xl border border-ink/15 bg-card-white p-6 text-left shadow-card transition hover:-translate-y-0.5 hover:border-signal-orange hover:shadow-lift"
           >
-            <p className="font-display text-xl font-bold">I&apos;m looking for work</p>
+            <p className="font-display text-xl font-bold">I am looking for work</p>
             <p className="mt-2 text-sm text-ink/65">
-              Build a profile employers can browse and message.
+              Create a free profile so employers can find and contact you.
             </p>
           </button>
           <button
@@ -49,9 +50,9 @@ export function SignUpForm({ defaultType = null }: SignUpFormProps) {
             onClick={() => setAccountType("employer")}
             className="rounded-2xl border border-ink/15 bg-card-white p-6 text-left shadow-card transition hover:-translate-y-0.5 hover:border-steel-blue hover:shadow-lift"
           >
-            <p className="font-display text-xl font-bold">I&apos;m hiring</p>
+            <p className="font-display text-xl font-bold">I am hiring</p>
             <p className="mt-2 text-sm text-ink/65">
-              Search young tradespeople and reach out directly.
+              Search young trades candidates and contact them directly.
             </p>
           </button>
         </div>
@@ -109,11 +110,11 @@ export function SignUpForm({ defaultType = null }: SignUpFormProps) {
         </button>
         <h1 className="mt-2 font-display text-3xl font-bold text-ink">
           {accountType === "candidate"
-            ? "Create your candidate account"
-            : "Create your employer account"}
+            ? "Register as a candidate"
+            : "Register as an employer"}
         </h1>
         <p className="mt-2 text-ink/70">
-          Already have an account?{" "}
+          Already registered?{" "}
           <Link href="/sign-in" className="font-medium text-steel-blue hover:underline">
             Sign in
           </Link>
@@ -147,7 +148,7 @@ export function SignUpForm({ defaultType = null }: SignUpFormProps) {
       {error ? <p className="text-sm text-signal-orange">{error}</p> : null}
 
       <Button type="submit" className="w-full" disabled={loading}>
-        {loading ? "Creating account…" : "Create account"}
+        {loading ? "Creating account…" : "Register"}
       </Button>
 
       <div className="relative py-2 text-center text-xs uppercase tracking-wide text-ink/40">
@@ -171,8 +172,7 @@ export function SignUpForm({ defaultType = null }: SignUpFormProps) {
         Continue with Google
       </Button>
       <p className="text-xs text-ink/50">
-        Google sign-up still needs an account type. We&apos;ll finish wiring
-        that once OAuth credentials are set.
+        Google sign-in will be available once OAuth credentials are configured.
       </p>
     </form>
   );
@@ -214,7 +214,7 @@ export function SignInForm({ showDemoHints = false }: { showDemoHints?: boolean 
       <div>
         <h1 className="font-display text-3xl font-bold text-ink">Sign in</h1>
         <p className="mt-2 text-ink/70">
-          New here?{" "}
+          New to {APP_NAME}?{" "}
           <Link href="/sign-up" className="font-medium text-steel-blue hover:underline">
             Create an account
           </Link>

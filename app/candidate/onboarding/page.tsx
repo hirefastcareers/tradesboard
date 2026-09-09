@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Build your profile",
+  title: "Complete your profile",
 };
 
 export const dynamic = "force-dynamic";
@@ -78,7 +78,7 @@ export default async function CandidateOnboardingPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
       <p className="mb-6 text-center text-sm text-ink/60">
-        Takes a few minutes. You can edit everything later.
+        Complete each section so employers can review your details quickly.
       </p>
       <CandidateOnboardingForm initial={initial} />
     </div>

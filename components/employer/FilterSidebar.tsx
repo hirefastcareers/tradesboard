@@ -23,9 +23,9 @@ export function FilterSidebar({
   return (
     <aside className="space-y-5 rounded-2xl border border-ink/10 bg-card-white p-5">
       <div>
-        <h2 className="font-display text-lg font-bold text-ink">Filters</h2>
+        <h2 className="font-display text-lg font-bold text-ink">Refine your search</h2>
         <p className="mt-1 text-sm text-ink/60">
-          Narrow the candidates you want to message.
+          Filter candidates by trade, location and age range.
         </p>
       </div>
 
@@ -55,7 +55,7 @@ export function FilterSidebar({
           className="w-full rounded-md border border-ink/15 bg-workshop-white px-3 py-2.5 text-sm outline-none focus:border-steel-blue"
         />
         <span className="block text-xs text-ink/50">
-          Radius filtering comes next. For now we match town or postcode text.
+          Search by town or postcode. Distance radius filters will follow.
         </span>
       </label>
 

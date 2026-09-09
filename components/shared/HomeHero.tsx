@@ -2,6 +2,7 @@ import {
   CandidateCard,
   type CandidateCardData,
 } from "@/components/candidate/CandidateCard";
+import { ToolPatternBackground } from "@/components/shared/ToolPatternBackground";
 import { APP_NAME } from "@/lib/constants";
 import Link from "next/link";
 
@@ -72,8 +73,9 @@ const PREVIEW_CANDIDATES: Array<
 
 export function HomeHero() {
   return (
-    <section className="relative">
-      <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-2 lg:items-center lg:gap-12 lg:py-20">
+    <section className="relative overflow-hidden">
+      <ToolPatternBackground />
+      <div className="relative z-10 mx-auto grid max-w-6xl gap-10 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-2 lg:items-center lg:gap-12 lg:py-20">
         <div className="animate-fade-up space-y-5 sm:space-y-6">
           <p className="font-display text-xl font-bold text-signal-orange sm:text-2xl md:text-3xl">
             {APP_NAME}

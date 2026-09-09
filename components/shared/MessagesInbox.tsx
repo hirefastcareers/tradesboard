@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/shared/Button";
 import { EmptyState } from "@/components/shared/EmptyState";
-import { ToolPattern } from "@/components/shared/ToolPattern";
 
 type MessageRow = {
   id: string;
@@ -159,7 +158,6 @@ export function MessagesInbox({
       <div className="relative flex min-h-[360px] flex-col">
         {!selectedPeer ? (
           <div className="relative flex flex-1 items-center justify-center p-6">
-            <ToolPattern />
             <div className="relative w-full max-w-md">
               <EmptyState
                 patterned={false}

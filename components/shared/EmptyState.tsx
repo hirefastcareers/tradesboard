@@ -22,8 +22,7 @@ export function EmptyState({
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-2xl border border-dashed border-ink/20 px-6 py-14 text-center",
-        patterned && "bg-tool-pattern",
+        "relative overflow-hidden rounded-2xl border border-dashed border-ink/20 bg-workshop-white px-6 py-14 text-center",
         className,
       )}
     >

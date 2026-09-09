@@ -19,6 +19,20 @@ const bodySchema = z.object({
   bio: z.string().default(""),
   photoUrl: z.string().optional().nullable(),
   complete: z.boolean().optional(),
+  checks: z
+    .object({
+      hasCscs: z.boolean(),
+      canDrive: z.boolean(),
+      hasEcs: z.boolean(),
+      hasGcseMaths: z.boolean(),
+      hasGcseEnglish: z.boolean(),
+    })
+    .optional(),
+  hasCscs: z.boolean().optional(),
+  canDrive: z.boolean().optional(),
+  hasEcs: z.boolean().optional(),
+  hasGcseMaths: z.boolean().optional(),
+  hasGcseEnglish: z.boolean().optional(),
 });
 
 export async function POST(request: Request) {
@@ -45,6 +59,13 @@ export async function POST(request: Request) {
     }
 
     const data = parsed.data;
+    const checks = data.checks ?? {
+      hasCscs: data.hasCscs ?? false,
+      canDrive: data.canDrive ?? false,
+      hasEcs: data.hasEcs ?? false,
+      hasGcseMaths: data.hasGcseMaths ?? false,
+      hasGcseEnglish: data.hasGcseEnglish ?? false,
+    };
     const values = {
       userId: session.user.id,
       firstName: data.firstName,
@@ -57,6 +78,11 @@ export async function POST(request: Request) {
       certifications: data.certifications,
       bio: data.bio ?? "",
       photoUrl: data.photoUrl || null,
+      hasCscs: checks.hasCscs,
+      canDrive: checks.canDrive,
+      hasEcs: checks.hasEcs,
+      hasGcseMaths: checks.hasGcseMaths,
+      hasGcseEnglish: checks.hasGcseEnglish,
       profileComplete:
         data.complete ??
         profileCompleteness({
@@ -70,6 +96,7 @@ export async function POST(request: Request) {
           certifications: data.certifications,
           bio: data.bio,
           photoUrl: data.photoUrl,
+          ...checks,
         }) >= 80,
     };
 

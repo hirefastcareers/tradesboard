@@ -4,8 +4,10 @@ import { notFound } from "next/navigation";
 import { SkillChip } from "@/components/shared/SkillChip";
 import { TradeBadge } from "@/components/shared/TradeBadge";
 import { Button } from "@/components/shared/Button";
+import { CandidateChecksList } from "@/components/candidate/CandidateChecks";
 import { getDb, hasDatabase } from "@/db";
 import { candidateProfiles } from "@/db/schema";
+import { EMPTY_CANDIDATE_CHECKS } from "@/lib/constants";
 import { getDemoCandidate, isDemoMode } from "@/lib/demo-data";
 import { getSession } from "@/lib/session";
 import { initials } from "@/lib/utils";
@@ -47,6 +49,13 @@ export default async function CandidatePublicProfilePage({
           workExperience: row.workExperience,
           bio: row.bio,
           photoUrl: row.photoUrl,
+          checks: {
+            hasCscs: row.hasCscs,
+            canDrive: row.canDrive,
+            hasEcs: row.hasEcs,
+            hasGcseMaths: row.hasGcseMaths,
+            hasGcseEnglish: row.hasGcseEnglish,
+          },
         };
       }
     } catch {
@@ -55,6 +64,11 @@ export default async function CandidatePublicProfilePage({
   }
 
   if (!profile) notFound();
+
+  const checks = {
+    ...EMPTY_CANDIDATE_CHECKS,
+    ...profile.checks,
+  };
 
   const canMessage =
     session?.user?.accountType === "employer" &&
@@ -109,6 +123,13 @@ export default async function CandidatePublicProfilePage({
             <p className="mt-2 whitespace-pre-wrap text-sm leading-relaxed text-ink/80">
               {profile.bio || "No bio yet."}
             </p>
+          </section>
+
+          <section>
+            <h2 className="font-display text-xl font-bold">Tickets & checks</h2>
+            <div className="mt-3">
+              <CandidateChecksList checks={checks} />
+            </div>
           </section>
 
           {profile.currentlyStudying ? (

@@ -64,8 +64,37 @@ export const TRADE_COLORS: Record<
 
 export const AGE_RANGES = ["16-18", "19-21", "22-24"] as const;
 
+/** Tick-box attributes employers scan for. Short labels keep cards calm. */
+export const CANDIDATE_CHECKS = [
+  { key: "hasCscs", label: "CSCS", cardLabel: "CSCS" },
+  { key: "canDrive", label: "Can drive", cardLabel: "Drive" },
+  { key: "hasEcs", label: "ECS card", cardLabel: "ECS" },
+  { key: "hasGcseMaths", label: "GCSE Maths", cardLabel: "Maths" },
+  { key: "hasGcseEnglish", label: "GCSE English", cardLabel: "English" },
+] as const;
+
+export type CandidateCheckKey = (typeof CANDIDATE_CHECKS)[number]["key"];
+
+export type CandidateChecks = Record<CandidateCheckKey, boolean>;
+
+export const EMPTY_CANDIDATE_CHECKS: CandidateChecks = {
+  hasCscs: false,
+  canDrive: false,
+  hasEcs: false,
+  hasGcseMaths: false,
+  hasGcseEnglish: false,
+};
+
+/** Prefer site cards / drive / ECS first so the card stays uncluttered. */
+export const CARD_CHECK_PRIORITY: CandidateCheckKey[] = [
+  "hasCscs",
+  "canDrive",
+  "hasEcs",
+  "hasGcseMaths",
+  "hasGcseEnglish",
+];
+
 export const CERT_OPTIONS = [
-  "CSCS",
   "First aid",
   "Manual handling",
   "Working at height",
@@ -88,4 +117,9 @@ export const CANDIDATE_PROFILE_FIELDS = [
   "certifications",
   "bio",
   "photoUrl",
+  "hasCscs",
+  "canDrive",
+  "hasEcs",
+  "hasGcseMaths",
+  "hasGcseEnglish",
 ] as const;

@@ -41,6 +41,11 @@ export const candidateProfiles = pgTable("candidate_profiles", {
   certifications: text("certifications").array().notNull().default([]),
   bio: text("bio").notNull().default(""),
   photoUrl: text("photo_url"),
+  canDrive: boolean("can_drive").notNull().default(false),
+  hasCscs: boolean("has_cscs").notNull().default(false),
+  hasEcs: boolean("has_ecs").notNull().default(false),
+  hasGcseMaths: boolean("has_gcse_maths").notNull().default(false),
+  hasGcseEnglish: boolean("has_gcse_english").notNull().default(false),
   profileComplete: boolean("profile_complete").notNull().default(false),
   createdAt: timestamp("created_at", { withTimezone: true })
     .defaultNow()

@@ -59,6 +59,11 @@ export default async function CandidateDashboardPage() {
         certifications: demo.certifications,
         bio: demo.bio,
         photoUrl: demo.photoUrl,
+        canDrive: demo.checks.canDrive,
+        hasCscs: demo.checks.hasCscs,
+        hasEcs: demo.checks.hasEcs,
+        hasGcseMaths: demo.checks.hasGcseMaths,
+        hasGcseEnglish: demo.checks.hasGcseEnglish,
         profileComplete: true,
         createdAt: new Date(),
       };
@@ -100,6 +105,13 @@ export default async function CandidateDashboardPage() {
               tradeInterests: profile.tradeInterests ?? [],
               certifications: profile.certifications ?? [],
               photoUrl: profile.photoUrl,
+              checks: {
+                hasCscs: profile.hasCscs,
+                canDrive: profile.canDrive,
+                hasEcs: profile.hasEcs,
+                hasGcseMaths: profile.hasGcseMaths,
+                hasGcseEnglish: profile.hasGcseEnglish,
+              },
             }}
             href={`/candidate/${profile.id}`}
           />

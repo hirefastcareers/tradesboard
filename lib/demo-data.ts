@@ -1,5 +1,6 @@
 import type { CandidateCardData } from "@/components/candidate/CandidateCard";
 import type { AccountType, AgeRange } from "@/db/schema";
+import type { CandidateChecks } from "@/lib/constants";
 import { hasDatabase } from "@/db";
 
 /** Demo mode when explicitly enabled, or when no real database is configured. */
@@ -16,6 +17,7 @@ export type DemoCandidate = CandidateCardData & {
   workExperience: string | null;
   bio: string;
   ageRange: AgeRange;
+  checks: CandidateChecks;
 };
 
 export const DEMO_CANDIDATES: DemoCandidate[] = [
@@ -27,11 +29,18 @@ export const DEMO_CANDIDATES: DemoCandidate[] = [
     town: "Sheffield",
     postcode: "S1",
     tradeInterests: ["electrician"],
-    certifications: ["CSCS", "First aid"],
+    certifications: ["First aid"],
     currentlyStudying: "Level 2 Electrical Installation",
     workExperience: "Weekend labouring for a local sparks.",
     bio: "Keen to start an apprenticeship. Reliable, early, and happy on site.",
     photoUrl: null,
+    checks: {
+      hasCscs: true,
+      canDrive: false,
+      hasEcs: false,
+      hasGcseMaths: true,
+      hasGcseEnglish: true,
+    },
   },
   {
     id: "demo-aisha",
@@ -41,11 +50,18 @@ export const DEMO_CANDIDATES: DemoCandidate[] = [
     town: "Leeds",
     postcode: "LS1",
     tradeInterests: ["plumber"],
-    certifications: ["CSCS", "Manual handling"],
+    certifications: ["Manual handling"],
     currentlyStudying: null,
     workExperience: "One-year college placement with a domestic plumber.",
     bio: "Looking for junior plumber or mature apprentice roles in West Yorkshire.",
     photoUrl: null,
+    checks: {
+      hasCscs: true,
+      canDrive: true,
+      hasEcs: false,
+      hasGcseMaths: true,
+      hasGcseEnglish: true,
+    },
   },
   {
     id: "demo-tom",
@@ -55,11 +71,18 @@ export const DEMO_CANDIDATES: DemoCandidate[] = [
     town: "Manchester",
     postcode: "M1",
     tradeInterests: ["joiner"],
-    certifications: ["CSCS", "Working at height"],
+    certifications: ["Working at height"],
     currentlyStudying: null,
     workExperience: "Two years fitting kitchens and first/second fix.",
     bio: "Site-ready joiner. Own basic tools. Can start next month.",
     photoUrl: null,
+    checks: {
+      hasCscs: true,
+      canDrive: true,
+      hasEcs: false,
+      hasGcseMaths: true,
+      hasGcseEnglish: false,
+    },
   },
   {
     id: "demo-ellie",
@@ -69,11 +92,18 @@ export const DEMO_CANDIDATES: DemoCandidate[] = [
     town: "Bradford",
     postcode: "BD1",
     tradeInterests: ["painter-decorator"],
-    certifications: ["CSCS"],
+    certifications: [],
     currentlyStudying: "Painting & Decorating Level 2",
     workExperience: "Helped on family renovation jobs.",
     bio: "Neat finisher looking for commercial or residential work.",
     photoUrl: null,
+    checks: {
+      hasCscs: true,
+      canDrive: false,
+      hasEcs: false,
+      hasGcseMaths: true,
+      hasGcseEnglish: true,
+    },
   },
   {
     id: "demo-noah",
@@ -88,6 +118,13 @@ export const DEMO_CANDIDATES: DemoCandidate[] = [
     workExperience: null,
     bio: "Strong and keen. Want a bricklaying apprenticeship close to York.",
     photoUrl: null,
+    checks: {
+      hasCscs: false,
+      canDrive: false,
+      hasEcs: false,
+      hasGcseMaths: true,
+      hasGcseEnglish: true,
+    },
   },
   {
     id: "demo-priya",
@@ -97,11 +134,18 @@ export const DEMO_CANDIDATES: DemoCandidate[] = [
     town: "Leeds",
     postcode: "LS6",
     tradeInterests: ["general-labour"],
-    certifications: ["CSCS", "Manual handling", "Site safety"],
+    certifications: ["Manual handling", "Site safety"],
     currentlyStudying: null,
     workExperience: "Six months on a housing site as general labour.",
     bio: "Hard worker, CSCS ready, looking for steady site work.",
     photoUrl: null,
+    checks: {
+      hasCscs: true,
+      canDrive: true,
+      hasEcs: false,
+      hasGcseMaths: true,
+      hasGcseEnglish: true,
+    },
   },
   {
     id: "demo-callum",
@@ -111,11 +155,18 @@ export const DEMO_CANDIDATES: DemoCandidate[] = [
     town: "Huddersfield",
     postcode: "HD1",
     tradeInterests: ["electrician"],
-    certifications: ["CSCS", "First aid", "Manual handling"],
+    certifications: ["First aid", "Manual handling"],
     currentlyStudying: null,
     workExperience: "Domestic second fix with an uncle's firm over summer.",
     bio: "Finished college. Want a proper spark's mate role with day release.",
     photoUrl: null,
+    checks: {
+      hasCscs: true,
+      canDrive: true,
+      hasEcs: true,
+      hasGcseMaths: true,
+      hasGcseEnglish: true,
+    },
   },
   {
     id: "demo-mia",
@@ -125,11 +176,18 @@ export const DEMO_CANDIDATES: DemoCandidate[] = [
     town: "Wakefield",
     postcode: "WF1",
     tradeInterests: ["plumber", "general-labour"],
-    certifications: ["CSCS"],
+    certifications: [],
     currentlyStudying: "Plumbing Level 2",
     workExperience: "Saturday shifts in a builders' merchants.",
     bio: "Hands-on, learns fast, happy to graft. Looking for an apprenticeship.",
     photoUrl: null,
+    checks: {
+      hasCscs: true,
+      canDrive: false,
+      hasEcs: false,
+      hasGcseMaths: true,
+      hasGcseEnglish: true,
+    },
   },
   {
     id: "demo-reece",
@@ -139,11 +197,18 @@ export const DEMO_CANDIDATES: DemoCandidate[] = [
     town: "Barnsley",
     postcode: "S70",
     tradeInterests: ["bricklayer", "general-labour"],
-    certifications: ["CSCS", "Working at height"],
+    certifications: ["Working at height"],
     currentlyStudying: null,
     workExperience: "Eighteen months on new-build housing sites.",
     bio: "Can lay bricks to line. Own PPE. Available full time.",
     photoUrl: null,
+    checks: {
+      hasCscs: true,
+      canDrive: true,
+      hasEcs: false,
+      hasGcseMaths: false,
+      hasGcseEnglish: true,
+    },
   },
   {
     id: "demo-sophia",
@@ -153,11 +218,18 @@ export const DEMO_CANDIDATES: DemoCandidate[] = [
     town: "Doncaster",
     postcode: "DN1",
     tradeInterests: ["joiner"],
-    certifications: ["CSCS", "First aid"],
+    certifications: ["First aid"],
     currentlyStudying: "Site Carpentry Level 3",
     workExperience: "College workshop plus two site placements.",
     bio: "Careful with finishes. Prefer joinery over rough carpentry.",
     photoUrl: null,
+    checks: {
+      hasCscs: true,
+      canDrive: false,
+      hasEcs: false,
+      hasGcseMaths: true,
+      hasGcseEnglish: true,
+    },
   },
   {
     id: "demo-dylan",
@@ -172,6 +244,13 @@ export const DEMO_CANDIDATES: DemoCandidate[] = [
     workExperience: null,
     bio: "Neat, tidy, and proud of clean edges. Want weekend or apprentice work.",
     photoUrl: null,
+    checks: {
+      hasCscs: false,
+      canDrive: false,
+      hasEcs: false,
+      hasGcseMaths: true,
+      hasGcseEnglish: true,
+    },
   },
   {
     id: "demo-hana",
@@ -181,11 +260,18 @@ export const DEMO_CANDIDATES: DemoCandidate[] = [
     town: "Halifax",
     postcode: "HX1",
     tradeInterests: ["electrician"],
-    certifications: ["CSCS", "IPAF", "First aid"],
+    certifications: ["IPAF", "First aid"],
     currentlyStudying: null,
     workExperience: "Three years as an electrician's mate on commercial fit-outs.",
     bio: "Ready for a junior electrician role. Own tools and van access.",
     photoUrl: null,
+    checks: {
+      hasCscs: true,
+      canDrive: true,
+      hasEcs: true,
+      hasGcseMaths: true,
+      hasGcseEnglish: true,
+    },
   },
 ];
 
@@ -218,7 +304,7 @@ export function getDemoCandidate(id: string) {
 
 export function getDemoCandidateCards(): CandidateCardData[] {
   return DEMO_CANDIDATES.map(
-    ({ id, firstName, ageRange, town, tradeInterests, certifications, photoUrl }) => ({
+    ({
       id,
       firstName,
       ageRange,
@@ -226,6 +312,16 @@ export function getDemoCandidateCards(): CandidateCardData[] {
       tradeInterests,
       certifications,
       photoUrl,
+      checks,
+    }) => ({
+      id,
+      firstName,
+      ageRange,
+      town,
+      tradeInterests,
+      certifications,
+      photoUrl,
+      checks,
     }),
   );
 }

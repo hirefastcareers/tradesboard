@@ -18,11 +18,13 @@ export function profileCompleteness(
 
   let filled = 0;
   for (const field of CANDIDATE_PROFILE_FIELDS) {
-    const value = profile[field];
+    const value = profile[field as keyof typeof profile];
     if (Array.isArray(value)) {
       if (value.length > 0) filled += 1;
     } else if (typeof value === "string") {
       if (value.trim().length > 0) filled += 1;
+    } else if (typeof value === "boolean") {
+      if (value) filled += 1;
     } else if (value != null) {
       filled += 1;
     }

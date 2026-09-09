@@ -5,9 +5,12 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/shared/Button";
 import {
   AGE_RANGES,
+  CANDIDATE_CHECKS,
   CERT_OPTIONS,
+  EMPTY_CANDIDATE_CHECKS,
   TRADE_LABELS,
   TRADE_OPTIONS,
+  type CandidateChecks,
 } from "@/lib/constants";
 
 const STEPS = [
@@ -15,7 +18,7 @@ const STEPS = [
   "Trade & skills",
   "Education",
   "Experience",
-  "Certs",
+  "Tickets & checks",
   "Bio & photo",
 ] as const;
 
@@ -30,6 +33,7 @@ type FormState = {
   certifications: string[];
   bio: string;
   photoUrl: string;
+  checks: CandidateChecks;
 };
 
 const INITIAL: FormState = {
@@ -43,6 +47,7 @@ const INITIAL: FormState = {
   certifications: [],
   bio: "",
   photoUrl: "",
+  checks: { ...EMPTY_CANDIDATE_CHECKS },
 };
 
 function toggleValue(list: string[], value: string) {
@@ -58,7 +63,14 @@ export function CandidateOnboardingForm({
 }) {
   const router = useRouter();
   const [step, setStep] = useState(0);
-  const [form, setForm] = useState<FormState>({ ...INITIAL, ...initial });
+  const [form, setForm] = useState<FormState>({
+    ...INITIAL,
+    ...initial,
+    checks: {
+      ...EMPTY_CANDIDATE_CHECKS,
+      ...(initial?.checks ?? {}),
+    },
+  });
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
 
@@ -225,31 +237,71 @@ export function CandidateOnboardingForm({
         )}
 
         {step === 4 && (
-          <div className="space-y-4">
-            <h1 className="font-display text-2xl font-bold">Certificates</h1>
-            <div className="flex flex-wrap gap-2">
-              {CERT_OPTIONS.map((cert) => {
-                const active = form.certifications.includes(cert);
+          <div className="space-y-5">
+            <div>
+              <h1 className="font-display text-2xl font-bold">
+                Tickets & checks
+              </h1>
+              <p className="mt-1 text-sm text-ink/65">
+                Tick what you have. Employers scan these first.
+              </p>
+            </div>
+            <div className="space-y-2">
+              {CANDIDATE_CHECKS.map((item) => {
+                const on = form.checks[item.key];
                 return (
-                  <button
-                    key={cert}
-                    type="button"
-                    onClick={() =>
-                      update(
-                        "certifications",
-                        toggleValue(form.certifications, cert),
-                      )
-                    }
-                    className={`rounded-md border px-3 py-2 text-sm font-medium transition ${
-                      active
-                        ? "border-hi-vis-yellow bg-hi-vis-yellow/40 text-ink"
+                  <label
+                    key={item.key}
+                    className={`flex cursor-pointer items-center gap-3 rounded-md border px-3 py-2.5 text-sm font-medium transition ${
+                      on
+                        ? "border-signal-orange/40 bg-signal-orange/8 text-ink"
                         : "border-ink/15 bg-workshop-white text-ink"
                     }`}
                   >
-                    {cert}
-                  </button>
+                    <input
+                      type="checkbox"
+                      className="h-4 w-4 accent-signal-orange"
+                      checked={on}
+                      onChange={() =>
+                        update("checks", {
+                          ...form.checks,
+                          [item.key]: !on,
+                        })
+                      }
+                    />
+                    {item.label}
+                  </label>
                 );
               })}
+            </div>
+            <div>
+              <p className="mb-2 text-sm font-medium text-ink">
+                Other certificates
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {CERT_OPTIONS.map((cert) => {
+                  const active = form.certifications.includes(cert);
+                  return (
+                    <button
+                      key={cert}
+                      type="button"
+                      onClick={() =>
+                        update(
+                          "certifications",
+                          toggleValue(form.certifications, cert),
+                        )
+                      }
+                      className={`rounded-md border px-3 py-2 text-sm font-medium transition ${
+                        active
+                          ? "border-hi-vis-yellow bg-hi-vis-yellow/40 text-ink"
+                          : "border-ink/15 bg-workshop-white text-ink"
+                      }`}
+                    >
+                      {cert}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
         )}

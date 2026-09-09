@@ -1,6 +1,10 @@
 import Link from "next/link";
 import { TradeBadge } from "@/components/shared/TradeBadge";
-import { SkillChip } from "@/components/shared/SkillChip";
+import { CandidateChecksRow } from "@/components/candidate/CandidateChecks";
+import {
+  EMPTY_CANDIDATE_CHECKS,
+  type CandidateChecks,
+} from "@/lib/constants";
 import { initials } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 
@@ -12,6 +16,7 @@ export type CandidateCardData = {
   tradeInterests: string[];
   certifications: string[];
   photoUrl?: string | null;
+  checks?: Partial<CandidateChecks>;
 };
 
 type CandidateCardProps = {
@@ -30,7 +35,10 @@ export function CandidateCard({
   interactive = true,
 }: CandidateCardProps) {
   const primaryTrade = candidate.tradeInterests[0] ?? "other";
-  const chips = candidate.certifications.slice(0, 3);
+  const checks: CandidateChecks = {
+    ...EMPTY_CANDIDATE_CHECKS,
+    ...candidate.checks,
+  };
   const content = (
     <article
       style={style}
@@ -67,13 +75,7 @@ export function CandidateCard({
         </div>
       </div>
 
-      {chips.length > 0 ? (
-        <div className="mt-3 flex flex-wrap gap-1.5">
-          {chips.map((chip) => (
-            <SkillChip key={chip} label={chip} />
-          ))}
-        </div>
-      ) : null}
+      <CandidateChecksRow checks={checks} limit={3} />
 
       <p className="mt-3 text-sm text-ink/65">{candidate.town}</p>
     </article>
@@ -82,7 +84,10 @@ export function CandidateCard({
   if (!href) return content;
 
   return (
-    <Link href={href} className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange focus-visible:ring-offset-2 rounded-2xl">
+    <Link
+      href={href}
+      className="block rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange focus-visible:ring-offset-2"
+    >
       {content}
     </Link>
   );

@@ -36,12 +36,32 @@ export default async function EmployerDashboardPage() {
           tradeInterests: candidateProfiles.tradeInterests,
           certifications: candidateProfiles.certifications,
           photoUrl: candidateProfiles.photoUrl,
+          hasCscs: candidateProfiles.hasCscs,
+          canDrive: candidateProfiles.canDrive,
+          hasEcs: candidateProfiles.hasEcs,
+          hasGcseMaths: candidateProfiles.hasGcseMaths,
+          hasGcseEnglish: candidateProfiles.hasGcseEnglish,
         })
         .from(candidateProfiles)
         .orderBy(desc(candidateProfiles.createdAt))
         .limit(60);
       if (rows.length > 0) {
-        candidates = rows;
+        candidates = rows.map((row) => ({
+          id: row.id,
+          firstName: row.firstName,
+          ageRange: row.ageRange,
+          town: row.town,
+          tradeInterests: row.tradeInterests,
+          certifications: row.certifications,
+          photoUrl: row.photoUrl,
+          checks: {
+            hasCscs: row.hasCscs,
+            canDrive: row.canDrive,
+            hasEcs: row.hasEcs,
+            hasGcseMaths: row.hasGcseMaths,
+            hasGcseEnglish: row.hasGcseEnglish,
+          },
+        }));
       }
     } catch {
       // keep demo data

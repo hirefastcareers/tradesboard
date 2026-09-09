@@ -31,6 +31,13 @@ export default async function CandidateOnboardingPage() {
         certifications: string[];
         bio: string;
         photoUrl: string;
+        checks: {
+          hasCscs: boolean;
+          canDrive: boolean;
+          hasEcs: boolean;
+          hasGcseMaths: boolean;
+          hasGcseEnglish: boolean;
+        };
       }
     | undefined;
 
@@ -54,6 +61,13 @@ export default async function CandidateOnboardingPage() {
           certifications: profile.certifications ?? [],
           bio: profile.bio ?? "",
           photoUrl: profile.photoUrl ?? "",
+          checks: {
+            hasCscs: profile.hasCscs,
+            canDrive: profile.canDrive,
+            hasEcs: profile.hasEcs,
+            hasGcseMaths: profile.hasGcseMaths,
+            hasGcseEnglish: profile.hasGcseEnglish,
+          },
         };
       }
     } catch {

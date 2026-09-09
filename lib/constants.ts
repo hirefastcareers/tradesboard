@@ -23,42 +23,56 @@ export const TRADE_LABELS: Record<Trade, string> = {
 /** Colour tokens mapped to trades for badges */
 export const TRADE_COLORS: Record<
   Trade,
-  { bg: string; text: string; border: string }
+  { bg: string; text: string; border: string; accent: string; soft: string }
 > = {
   electrician: {
     bg: "bg-steel-blue/15",
     text: "text-steel-blue",
     border: "border-steel-blue/30",
+    accent: "#3A6EA5",
+    soft: "bg-steel-blue/10",
   },
   plumber: {
     bg: "bg-[#1F6F8B]/15",
     text: "text-[#1F6F8B]",
     border: "border-[#1F6F8B]/30",
+    accent: "#1F6F8B",
+    soft: "bg-[#1F6F8B]/10",
   },
   joiner: {
     bg: "bg-[#8B5E3C]/15",
     text: "text-[#8B5E3C]",
     border: "border-[#8B5E3C]/30",
+    accent: "#8B5E3C",
+    soft: "bg-[#8B5E3C]/10",
   },
   bricklayer: {
     bg: "bg-[#A65D3F]/15",
     text: "text-[#A65D3F]",
     border: "border-[#A65D3F]/30",
+    accent: "#A65D3F",
+    soft: "bg-[#A65D3F]/10",
   },
   "painter-decorator": {
     bg: "bg-signal-orange/15",
     text: "text-signal-orange",
     border: "border-signal-orange/30",
+    accent: "#FF5A1F",
+    soft: "bg-signal-orange/10",
   },
   "general-labour": {
     bg: "bg-ink/10",
     text: "text-ink/80",
     border: "border-ink/20",
+    accent: "#21262B",
+    soft: "bg-ink/5",
   },
   other: {
     bg: "bg-ink/8",
     text: "text-ink/70",
     border: "border-ink/15",
+    accent: "#21262B",
+    soft: "bg-ink/5",
   },
 };
 

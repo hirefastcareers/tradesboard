@@ -105,6 +105,8 @@ export default async function CandidateDashboardPage() {
               tradeInterests: profile.tradeInterests ?? [],
               certifications: profile.certifications ?? [],
               photoUrl: profile.photoUrl,
+              bio: profile.bio,
+              currentlyStudying: profile.currentlyStudying,
               checks: {
                 hasCscs: profile.hasCscs,
                 canDrive: profile.canDrive,

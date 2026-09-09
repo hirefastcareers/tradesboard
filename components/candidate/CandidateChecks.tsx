@@ -48,7 +48,7 @@ export function CandidateChecksRow({
   if (keys.length === 0) return null;
 
   return (
-    <ul className={cn("mt-3 flex flex-wrap gap-x-3 gap-y-1.5", className)}>
+    <ul className={cn("flex flex-wrap gap-x-3 gap-y-1.5", className ?? "mt-3")}>
       {keys.map((key) => {
         const item = CANDIDATE_CHECKS.find((c) => c.key === key)!;
         return (

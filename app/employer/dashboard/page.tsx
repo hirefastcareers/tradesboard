@@ -36,6 +36,8 @@ export default async function EmployerDashboardPage() {
           tradeInterests: candidateProfiles.tradeInterests,
           certifications: candidateProfiles.certifications,
           photoUrl: candidateProfiles.photoUrl,
+          bio: candidateProfiles.bio,
+          currentlyStudying: candidateProfiles.currentlyStudying,
           hasCscs: candidateProfiles.hasCscs,
           canDrive: candidateProfiles.canDrive,
           hasEcs: candidateProfiles.hasEcs,
@@ -54,6 +56,8 @@ export default async function EmployerDashboardPage() {
           tradeInterests: row.tradeInterests,
           certifications: row.certifications,
           photoUrl: row.photoUrl,
+          bio: row.bio,
+          currentlyStudying: row.currentlyStudying,
           checks: {
             hasCscs: row.hasCscs,
             canDrive: row.canDrive,

@@ -313,6 +313,8 @@ export function getDemoCandidateCards(): CandidateCardData[] {
       certifications,
       photoUrl,
       checks,
+      bio,
+      currentlyStudying,
     }) => ({
       id,
       firstName,
@@ -322,6 +324,8 @@ export function getDemoCandidateCards(): CandidateCardData[] {
       certifications,
       photoUrl,
       checks,
+      bio,
+      currentlyStudying,
     }),
   );
 }

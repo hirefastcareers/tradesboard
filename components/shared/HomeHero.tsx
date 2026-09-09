@@ -15,6 +15,7 @@ const PREVIEW_CANDIDATES: Array<
     town: "Sheffield",
     tradeInterests: ["electrician"],
     certifications: ["First aid"],
+    bio: "Keen to start an apprenticeship. Reliable, early, and happy on site.",
     checks: {
       hasCscs: true,
       canDrive: false,
@@ -34,6 +35,7 @@ const PREVIEW_CANDIDATES: Array<
     town: "Leeds",
     tradeInterests: ["plumber"],
     certifications: ["Manual handling"],
+    bio: "Looking for junior plumber or mature apprentice roles in West Yorkshire.",
     checks: {
       hasCscs: true,
       canDrive: true,
@@ -53,6 +55,7 @@ const PREVIEW_CANDIDATES: Array<
     town: "Manchester",
     tradeInterests: ["joiner"],
     certifications: ["Working at height"],
+    bio: "Site-ready joiner. Own basic tools. Can start next month.",
     checks: {
       hasCscs: true,
       canDrive: true,

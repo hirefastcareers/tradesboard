@@ -11,10 +11,15 @@ Job board for young tradespeople (16-24). Candidates build profiles; employers b
 
 ## Setup
 
-1. Copy `.env.example` to `.env.local` and fill in values.
+1. Copy `.env.example` to `.env.local` (demo values work out of the box).
 2. `npm install`
-3. `npm run db:push` (requires `DATABASE_URL`)
-4. `npm run dev`
+3. `npm run dev`
+
+Demo sign-in (no database needed):
+- `employer@demo.local` / `password123` - browse 12 fake candidates
+- `candidate@demo.local` / `password123` - candidate dashboard
+
+To use a real Neon database later, set `DATABASE_URL` and `DEMO_MODE=false`.
 
 ## Scripts
 
